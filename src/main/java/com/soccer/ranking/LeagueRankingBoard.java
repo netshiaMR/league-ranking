@@ -45,8 +45,7 @@ public class LeagueRankingBoard {
 				BufferedReader bufferedReader = new BufferedReader(
 						new InputStreamReader(new FileInputStream(file), "UTF8"));
 				String inputParline;
-				System.out.println(
-						"============================ Fixture Input ====================================================");
+				System.out.println("============================ Fixture Input ====================================================");
 				while ((inputParline = bufferedReader.readLine()) != null) {
 					System.out.println(inputParline);
 					FixtureProcessor fixtureProcessor = new FixtureProcessor();
