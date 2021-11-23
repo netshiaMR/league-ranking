@@ -106,7 +106,6 @@ public class LeagueRankingBoard {
 		int index = 0;
 		System.out.println("============================League Table Results==============================================");
 		for (Team team : leagueRankingTable) {
-			suffix = team.getPoints() == 1 ? " pt" : " pts";
 			String teamName = team.getTeamName();
 			int mp = 0;
 			for (Map.Entry<String, Integer> val : matchPlayed.entrySet()) {
@@ -114,6 +113,7 @@ public class LeagueRankingBoard {
 					mp = val.getValue();
 				}
 			}
+			suffix = team.getPoints() <= 1 ? " pt" : " pts";
 			System.out.println(index + 1 + ". " + teamName + ", MP " + mp + ", " + team.getPoints() + suffix);
 			index++;
 		}
