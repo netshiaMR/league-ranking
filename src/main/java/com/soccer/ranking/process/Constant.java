@@ -8,6 +8,7 @@ package com.soccer.ranking.process;
  *
  */
 public class Constant {
+	public static final int LOSS_POINTS = 0;
 	public static final int TIE_POINTS = 1;
 	public static final int WIN_POINTS = 3;
 }

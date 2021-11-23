@@ -1,24 +1,27 @@
 package com.soccer.ranking.process;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.soccer.ranking.model.Team;
 
 /**
- * Class FixtureProcessor provide api methods to process input data and extends a Constant Class
+ * Class FixtureProcessor provide api methods to process input data and extends
+ * a Constant Class
  * 
- * @author Netshia Rendani 
+ * @author Netshia Rendani
  * @since 18/11/2021 T21:00
  */
-public class FixtureProcessor extends Constant{
-	private List<Team> playedTeams = new ArrayList<>();
+public class FixtureProcessor extends Constant {
+	private List<Team> playedTeams = new ArrayList<Team>();
 	private List<Integer> scores = new ArrayList<Integer>();
-
 	/**
 	 * processResultPerLine
+	 * 
 	 * @param line
 	 */
 	public void processResultPerLine(String line) {
@@ -35,9 +38,9 @@ public class FixtureProcessor extends Constant{
 		}
 	}
 
-
 	/**
 	 * recordWin
+	 * 
 	 * @param team
 	 */
 	public void recordWin(Team team) {
@@ -46,6 +49,7 @@ public class FixtureProcessor extends Constant{
 
 	/**
 	 * recordDraw
+	 * 
 	 * @param team
 	 */
 	public void recordDraw(Team team) {
@@ -54,6 +58,7 @@ public class FixtureProcessor extends Constant{
 
 	/**
 	 * getWinner
+	 * 
 	 * @param score1
 	 * @param score2
 	 * @return
@@ -79,7 +84,7 @@ public class FixtureProcessor extends Constant{
 			recordWin(this.getWinner(scoreForTeamA, scoreForTeamB));
 		}
 	}
-	
+
 	public List<Integer> getScores() {
 		return scores;
 	}

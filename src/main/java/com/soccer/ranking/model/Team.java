@@ -9,6 +9,9 @@ public class Team {
 	public Team(String teamName) {
 		this.teamName = teamName;
 	}
+	public Team(String teamName, int matchPlayed) {
+		this.teamName = teamName;
+	}
 
 	public void incrementPoints(int points) {
 		this.points += points;
@@ -28,6 +31,14 @@ public class Team {
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
+	}
+
+	public static Comparator<Team> getTeamComparator() {
+		return TeamComparator;
+	}
+
+	public static void setTeamComparator(Comparator<Team> teamComparator) {
+		TeamComparator = teamComparator;
 	}
 
 	@Override

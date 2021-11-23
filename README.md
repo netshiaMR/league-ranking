@@ -29,7 +29,7 @@ A command-line application that will calculate the ranking table for a soccer le
 4. Use the follow command to run run an application after a successful build then 
 5. cd to the target  then run the following command
 
->  java -jar soccer-league-1.0-SNAPSHOT-jar-with-dependencies.jar -f  `{{path of input file}}`
+>  java -jar soccer-league-1.0-SNAPSHOT-jar-with-dependencies.jar -file  `{{path of input file}}`
 
 e.g for the running and application command 
 >java -jar ./target/leaguerankingApp-jar-with-dependencies.jar -file C:\input.txt

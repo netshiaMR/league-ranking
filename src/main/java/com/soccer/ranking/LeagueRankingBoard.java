@@ -7,26 +7,33 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.soccer.ranking.model.Team;
 import com.soccer.ranking.process.FixtureProcessor;
 
 /**
  * LeagueRankingBoard
+ * 
  * @author Netshia Rendani
  * @since 18/11/2021 T21:00
  */
 public class LeagueRankingBoard {
 	private List<Team> leagueRankingTable = null;
+	public Map<String, Integer> matchPlayed = new HashMap<String, Integer>();
+
 	/**
 	 * LeagueRankingBoard
 	 */
-	public LeagueRankingBoard(){
+	public LeagueRankingBoard() {
 		this.leagueRankingTable = new ArrayList<>();
 	}
+
 	/**
 	 * parseFixtureResultsFile
+	 * 
 	 * @param file
 	 */
 	public void parseFixtureResultsFile(File file) {
@@ -35,9 +42,11 @@ public class LeagueRankingBoard {
 			System.exit(0);
 		} else {
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+				BufferedReader bufferedReader = new BufferedReader(
+						new InputStreamReader(new FileInputStream(file), "UTF8"));
 				String str;
-				System.out.println("============================ Fixture Input ====================================================");
+				System.out.println(
+						"============================ Fixture Input ====================================================");
 				while ((str = bufferedReader.readLine()) != null) {
 					System.out.println(str);
 					FixtureProcessor fixtureProcessor = new FixtureProcessor();
@@ -46,8 +55,19 @@ public class LeagueRankingBoard {
 					for (Team team : fixtureProcessor.getPlayedTeams()) {
 						addTeam(team);
 					}
+					
+					ArrayList<String> listofTeam = new ArrayList<String>();
+					for (Team teams : fixtureProcessor.getPlayedTeams()) {
+						listofTeam.add(teams.getTeamName());
+					}
+					for (String teams : listofTeam) {
+						Integer j = matchPlayed.get(teams);
+						matchPlayed.put(teams, (j == null) ? 1 : j + 1);
+					}
 				}
-				System.out.println("==============================================================================================");
+				
+				System.out.println(
+						"==============================================================================================");
 				System.out.println();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
@@ -59,7 +79,8 @@ public class LeagueRankingBoard {
 	}
 
 	/**
-	 * This Methods add the Team object to leagueRankingTable list and check whether the teams was already add to the list.
+	 * This Methods add the Team object to leagueRankingTable list and check whether
+	 * the teams was already add to the list.
 	 * 
 	 * @param playedTeam
 	 */
@@ -72,7 +93,7 @@ public class LeagueRankingBoard {
 		}
 		leagueRankingTable.add(playedTeam);
 	}
-	
+
 	public void sortTeams() {
 		Collections.sort(leagueRankingTable, Team.TeamComparator);
 	}
@@ -87,10 +108,18 @@ public class LeagueRankingBoard {
 		System.out.println("============================League Table Results==============================================");
 		for (Team team : leagueRankingTable) {
 			suffix = team.getPoints() == 1 ? " pt" : " pts";
-			System.out.println(index + 1 + ". " + team.getTeamName() + ", " + team.getPoints() + suffix);
+			String teamName = team.getTeamName();
+			int mp = 0;
+			for (Map.Entry<String, Integer> val : matchPlayed.entrySet()) {
+				if (val.getKey().equalsIgnoreCase(teamName)) {
+					mp = val.getValue();
+				}
+			}
+			System.out.println(index + 1 + ". " + teamName + ", MP " + mp + ", " + team.getPoints() + suffix);
 			index++;
 		}
 		System.out.println("==============================================================================================");
+
 	}
 
 }

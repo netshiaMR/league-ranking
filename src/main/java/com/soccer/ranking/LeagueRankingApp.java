@@ -15,6 +15,7 @@ public class LeagueRankingApp {
 	@Option(name = "-file", usage = "Upload a txt file with fixture results separated by commas ")
 	private File file;
 
+	
 	public static void main(String[] args) {
 		try {
 			new LeagueRankingApp().run(args);
