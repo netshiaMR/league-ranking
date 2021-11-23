@@ -45,16 +45,17 @@ public class LeagueRankingBoard {
 				BufferedReader bufferedReader = new BufferedReader(
 						new InputStreamReader(new FileInputStream(file), "UTF8"));
 				String inputParline;
-				System.out.println("============================ Fixture Input ====================================================");
+				System.out.println(
+						"============================ Fixture Input ====================================================");
 				while ((inputParline = bufferedReader.readLine()) != null) {
 					System.out.println(inputParline);
 					FixtureProcessor fixtureProcessor = new FixtureProcessor();
 					fixtureProcessor.processResultPerLine(inputParline);
-					fixtureProcessor.recordPoints(); // 
+					fixtureProcessor.recordPoints(); //
 					for (Team team : fixtureProcessor.getPlayedTeams()) {
 						addTeam(team);
 					}
-					
+
 					ArrayList<String> listofTeam = new ArrayList<String>();
 					for (Team teams : fixtureProcessor.getPlayedTeams()) {
 						listofTeam.add(teams.getTeamName());
@@ -64,8 +65,9 @@ public class LeagueRankingBoard {
 						matchPlayed.put(teams, (j == null) ? 1 : j + 1);
 					}
 				}
-				
-				System.out.println("==============================================================================================");
+
+				System.out.println(
+						"==============================================================================================");
 				System.out.println();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
@@ -103,7 +105,26 @@ public class LeagueRankingBoard {
 		sortTeams();
 		String suffix = "";
 		int index = 0;
-		System.out.println("============================League Table Results==============================================");
+		System.out.println(
+				"============================League Table Results==============================================");
+		for (Team team : leagueRankingTable) {
+			String teamName = team.getTeamName();
+			suffix = team.getPoints() <= 1 ? " pt" : " pts";
+			System.out.println(index + 1 + ". " + teamName + "," + team.getPoints() + suffix);
+			index++;
+		}
+		System.out.println(
+				"==============================================================================================");
+
+	}
+
+	public void advancePrintLeagueRankingBoard() {
+		sortTeams();
+		String suffix = "";
+		int index = 0;
+		System.out.println(
+				"============================League Table Results==============================================");
+		System.out.printf("%s%9s%19s%8s\n", "Position", "Teams", "MP", "PTS"); 
 		for (Team team : leagueRankingTable) {
 			String teamName = team.getTeamName();
 			int mp = 0;
@@ -112,14 +133,14 @@ public class LeagueRankingBoard {
 					mp = val.getValue();
 				}
 			}
-			suffix = team.getPoints() <= 1 ? " pt" : " pts";
-			System.out.println(index + 1 + ". " + teamName + ", MP " + mp + ", " + team.getPoints() + suffix);
+			System.out.printf( "%5d%19s%11d%9d\n", (index+1), teamName ,mp ,team.getPoints());
 			index++;
 		}
-		System.out.println("==============================================================================================");
+		System.out.println(
+				"==============================================================================================");
 
 	}
-	
+
 	public List<Team> getLeagueRankingTable() {
 		return leagueRankingTable;
 	}
