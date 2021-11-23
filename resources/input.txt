@@ -1,5 +1,5 @@
 Lions 3, Snakes 3
-FC Barcelona 5, Lions 1
+FC Barcelona 1, Lions 1
 Tarantulas 1, FC Awesome 0
 Lions 1, FC Awesome 1
 FC Barcelona 5, Snakes 1

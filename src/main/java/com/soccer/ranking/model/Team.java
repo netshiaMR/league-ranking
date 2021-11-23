@@ -3,13 +3,10 @@ package com.soccer.ranking.model;
 import java.util.Comparator;
 
 public class Team {
-	private int points;
+	private int points = 0;
 	private String teamName;
 
 	public Team(String teamName) {
-		this.teamName = teamName;
-	}
-	public Team(String teamName, int matchPlayed) {
 		this.teamName = teamName;
 	}
 

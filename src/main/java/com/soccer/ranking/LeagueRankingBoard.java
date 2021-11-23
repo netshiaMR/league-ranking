@@ -44,14 +44,14 @@ public class LeagueRankingBoard {
 			try {
 				BufferedReader bufferedReader = new BufferedReader(
 						new InputStreamReader(new FileInputStream(file), "UTF8"));
-				String str;
+				String inputParline;
 				System.out.println(
 						"============================ Fixture Input ====================================================");
-				while ((str = bufferedReader.readLine()) != null) {
-					System.out.println(str);
+				while ((inputParline = bufferedReader.readLine()) != null) {
+					System.out.println(inputParline);
 					FixtureProcessor fixtureProcessor = new FixtureProcessor();
-					fixtureProcessor.processResultPerLine(str);
-					fixtureProcessor.recordPoints();
+					fixtureProcessor.processResultPerLine(inputParline);
+					fixtureProcessor.recordPoints(); // 
 					for (Team team : fixtureProcessor.getPlayedTeams()) {
 						addTeam(team);
 					}
@@ -66,8 +66,7 @@ public class LeagueRankingBoard {
 					}
 				}
 				
-				System.out.println(
-						"==============================================================================================");
+				System.out.println("==============================================================================================");
 				System.out.println();
 			} catch (IOException e) {
 				System.err.println(e.getMessage());

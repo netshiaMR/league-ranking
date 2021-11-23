@@ -17,21 +17,21 @@ import com.soccer.ranking.model.Team;
  * @since 18/11/2021 T21:00
  */
 public class FixtureProcessor extends Constant {
-	private List<Team> playedTeams = new ArrayList<Team>();
-	private List<Integer> scores = new ArrayList<Integer>();
+	private List<Team> playedTeams = new ArrayList<Team>(); // 
+	private List<Integer> scores = new ArrayList<Integer>(); // list of goals scored 
 	/**
 	 * processResultPerLine
 	 * 
-	 * @param line
+	 * @param line e.g Lions 1, FC Awesome 1
 	 */
 	public void processResultPerLine(String line) {
-		for (String splitString : line.trim().split(",")) {
+		for (String splitString : line.trim().split(",")) { // split the string by commas separated by commas
 			for (String sps : splitString.trim().split("^([A-Za-z]|[0-9])+$")) {
-				String teamName = sps.replaceAll("[^a-zA-Z\\s]", "");
-				Team team = new Team(teamName.trim());
+				String teamName = sps.replaceAll("[^a-zA-Z\\s]", "");// get name of team in string like Lions
+				Team team = new Team(teamName.trim()); // creating an object with the team name
 				playedTeams.add(team);
 			}
-			Matcher matcher = Pattern.compile("[\\d+]\\s*$").matcher(splitString);
+			Matcher matcher = Pattern.compile("[\\d+]\\s*$").matcher(splitString); // getting goals scored
 			while (matcher.find()) {
 				scores.add(Integer.parseInt(matcher.group(0)));
 			}
@@ -47,24 +47,24 @@ public class FixtureProcessor extends Constant {
 		team.incrementPoints(WIN_POINTS);
 	}
 
-	/**
-	 * recordDraw
-	 * 
+	/** Method name recordDraw
+	 * Record Draw Updating the recordDraw Methods to make it take in both teamA and teamB object 
 	 * @param team
 	 */
-	public void recordDraw(Team team) {
-		team.incrementPoints(TIE_POINTS);
+	public void recordDraw(Team teamA, Team teamB) {
+		teamA.incrementPoints(TIE_POINTS);
+		teamB.incrementPoints(TIE_POINTS);
 	}
 
 	/**
 	 * getWinner
 	 * 
-	 * @param score1
-	 * @param score2
+	 * @param scoreForTeamA
+	 * @param scoreForTeamB
 	 * @return
 	 */
-	public Team getWinner(int score1, int score2) {
-		if (score1 > score2) {
+	public Team getWinner(int scoreForTeamA, int scoreForTeamB) {
+		if (scoreForTeamA > scoreForTeamB) {
 			return getPlayedTeams().get(0);
 		} else {
 			return getPlayedTeams().get(1);
@@ -75,13 +75,12 @@ public class FixtureProcessor extends Constant {
 	 * recordPoints
 	 */
 	public void recordPoints() {
-		int scoreForTeamA = this.getScores().get(0);
-		int scoreForTeamB = this.getScores().get(1);
+		int scoreForTeamA = this.scores.get(0);
+		int scoreForTeamB = this.scores.get(1);
 		if (scoreForTeamA == scoreForTeamB) {
-			recordDraw(getPlayedTeams().get(0));
-			recordDraw(getPlayedTeams().get(1));
+			recordDraw(getPlayedTeams().get(0), getPlayedTeams().get(1));
 		} else {
-			recordWin(this.getWinner(scoreForTeamA, scoreForTeamB));
+			recordWin(getWinner(scoreForTeamA, scoreForTeamB));// recode the winner team after 
 		}
 	}
 
