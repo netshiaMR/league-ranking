@@ -41,6 +41,7 @@ public class LeagueRankingApp {
 			if (file != null) {
 				LeagueRankingBoard leagueRankingBoard = new LeagueRankingBoard();
 				leagueRankingBoard.parseFixtureResultsFile(file);
+				System.out.println();
 				leagueRankingBoard.printLeagueRankingBoard();
 			} else {
 				parser.printUsage(System.err);
