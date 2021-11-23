@@ -4,6 +4,8 @@ Tarantulas 1, FC Awesome 0
 Lions 1, FC Awesome 1
 FC Barcelona 5, Snakes 1
 Tarantulas 3, Snakes 1
+Grouches 4, Tarantulas 4
 Lions 4, Grouches 0
+Snakes 4, Grouches 0
 Snakes 3, Lions 1
 FC Barcelona 6, Tarantulas 1
