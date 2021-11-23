@@ -120,5 +120,21 @@ public class LeagueRankingBoard {
 		System.out.println("==============================================================================================");
 
 	}
+	
+	public List<Team> getLeagueRankingTable() {
+		return leagueRankingTable;
+	}
+
+	public void setLeagueRankingTable(List<Team> leagueRankingTable) {
+		this.leagueRankingTable = leagueRankingTable;
+	}
+
+	public Map<String, Integer> getMatchPlayed() {
+		return matchPlayed;
+	}
+
+	public void setMatchPlayed(Map<String, Integer> matchPlayed) {
+		this.matchPlayed = matchPlayed;
+	}
 
 }

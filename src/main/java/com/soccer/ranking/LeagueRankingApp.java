@@ -7,7 +7,8 @@ import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
 /**
- * LeagueRankingApp 
+ * LeagueRankingApp
+ * 
  * @author netshia Rendani
  * @since 18/11/2021 T21:00
  */
@@ -15,10 +16,13 @@ public class LeagueRankingApp {
 	@Option(name = "-file", usage = "Upload a txt file with fixture results separated by commas ")
 	private File file;
 
-	
 	public static void main(String[] args) {
 		try {
+			long start = System.currentTimeMillis();
 			new LeagueRankingApp().run(args);
+			long end = System.currentTimeMillis();
+			System.out.println();
+			System.out.println("Execution Time in milli second: " + (end - start));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -26,6 +30,7 @@ public class LeagueRankingApp {
 
 	/**
 	 * run
+	 * 
 	 * @param args
 	 * @throws IOException
 	 */
